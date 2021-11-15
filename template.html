@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting"> <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Barlow;
+            font-size: 16px;
+        }
+
+        .container {
+            padding: 40px 20px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .img-header {
+            text-align: center;
+        }
+
+        .img-header img {
+            height: 120px;
+            width: auto;
+        }
+
+        .title {
+            font-weight: 700;
+            font-size: 20px;
+            margin: 0 0 10px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .container-text {
+            padding-bottom: 20px;
+        }
+
+        .text {
+            color: #777;
+            line-height: 150%;
+            font-size: 14px;
+            margin: 0;
+            text-align: center;
+        }
+
+        .img-products {
+            margin-right: 16px;
+            width: 64px;
+        }
+
+        .img-products img {
+            width: 100%;
+        }
+
+        .titles {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 18px;
+            margin: 0 0 25 px;
+        }
+
+        .container-details-products {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #777;
+        }
+
+        .list-details-products {
+            display: flex;
+        }
+
+
+        .container-products,
+        .container-purchase-details,
+        .container-address {
+            padding: 20px 0;
+        }
+
+        .details-products {
+            width: calc(100% - 80px);
+        }
+
+        .details-products p {
+            text-transform: uppercase;
+            font-size: 13px;
+            margin: 10px 0;
+        }
+
+        .details-products-purchase {
+            width: 100%;
+            text-transform: uppercase;
+            font-size: 13px;
+            margin: 10px 0;
+        }
+
+        .button-go-to-order {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: block;
+            color: #fff;
+            padding: 18px 25px;
+            width: calc(100% - 50px);
+            border-radius: 4px;
+            background-color: #f37135;
+            cursor: pointer;
+        }
+
+        .button-go-to-order:hover {
+            opacity: 0.8;
+        }
+
+        .container-pd-line {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .container-pd-line:last-child {
+            display: flex;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border-top: 1px solid #777;
+            padding-top: 5px;
+            font-size: 18px;
+        }
+
+        .pd-left {
+            width: 65%;
+        }
+
+        .pd-right {
+            text-align: right;
+            width: 35%;
+        }
+
+        .container-address-details {
+            margin-bottom: 10px;
+        }
+
+        .city-state {
+            display: flex;
+        }
+
+        .city-details {
+            width: 75%;
+        }
+
+        .state-details {
+            width: 25%;
+        }
+
+        @media (min-width: 576px) {
+            .container {
+                padding: 40px 35px 20px;
+            }
+
+            .title {
+                font-size: 22px;
+            }
+
+            .text {
+                font-size: 16px;
+            }
+
+            .titles {
+                font-size: 20px;
+            }
+
+            .details-products p {
+                font-size: 15px;
+            }
+
+            .details-products-purchase {
+                font-size: 15px;
+            }
+
+            .button-go-to-order {
+                font-size: 18px;
+            }
+
+            .container-pd-line:last-child {
+                font-size: 20px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 40px 50px 20px;
+            }
+
+            .container-purchase-address {
+                display: flex;
+            }
+
+            .container-purchase-details,
+            .container-address {
+                width: 50%;
+            }
+
+            .container-purchase-details {
+                padding-right: 30px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .container {
+                padding: 40px 65px 20px;
+            }
+
+            .button-go-to-order {
+                font-size: 18px;
+                width: 350px;
+                margin: auto;
+                margin-bottom: 30px;
+            }
+
+        }
+
+
+        @media (min-width: 1200px) {
+            .container {
+                padding: 40px 80px 20px;
+            }
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- imagem do email -->
+        <div class="img-header">
+            <img src="https://res.cloudinary.com/nzesportes/image/upload/v1631149504/produtos/logo_nz_skpxaz.png">
+        </div>
+        <!-- título do email -->
+        <div>
+            <h2 class="title">Obrigado pela compra!</h2>
+        </div>
+        <!-- text do email -->
+        <div class="container-text">
+            <p class="text">
+                Olá! Recebemos seu pedido. Somente quando recebermos a confirmação, seguiremos com o envio das suas
+                compras. O
+                prazo de entrega passa a ser contado somente após a confirmação do pagamento.
+            </p>
+        </div>
+        <!-- produtos do email -->
+        <div class="container-products">
+            <div>
+                <h3 class="titles">Dados da compra</h3>
+            </div>
+            <!-- detalhes produto -->
+            <div class="container-details-products">
+                <div class="list-details-products">
+                    <div class="img-products">
+                        <img
+                            src="https://res.cloudinary.com/nzesportes/image/upload/v1631149504/produtos/nike-vermelho-thumb_xrgxfl.jpg">
+                    </div>
+                    <div class="details-products">
+                        <p>Chicago Bulll Preto P</p>
+                        <p>Quantidade: <span>4</span></p>
+                    </div>
+                </div>
+                <div class="details-products-purchase">
+                    <p>Preço: <span>R$ 120,00</span></p>
+                    <p>Subtotal: <span>R$ 480,00</span></p>
+                </div>
+            </div>
+            <!-- detalhes produto -->
+            <div class="container-details-products">
+                <div class="list-details-products">
+                    <div class="img-products">
+                        <img
+                            src="https://res.cloudinary.com/nzesportes/image/upload/v1631149504/produtos/nike-vermelho-thumb_xrgxfl.jpg">
+                    </div>
+                    <div class="details-products">
+                        <p>Chicago Bulll Preto P</p>
+                        <p>Quantidade: <span>4</span></p>
+                    </div>
+                </div>
+                <div class="details-products-purchase">
+                    <p>Preço: <span>R$ 120,00</span></p>
+                    <p>Subtotal: <span>R$ 480,00</span></p>
+                </div>
+            </div>
+            <div>
+                <a class="button-go-to-order">Ver seu pedido</a>
+            </div>
+            <div class="container-purchase-address">
+                <!-- detalhes da compra -->
+                <div class="container-purchase-details">
+                    <div>
+                        <h2 class="titles">Detalhes da Compra</h2>
+                    </div>
+                    <div class="container-pd-line">
+                        <div class="pd-left"><b>Valor da Compra</b></div>
+                        <div class="pd-right">R$ 100,00</div>
+                    </div>
+                    <div class="container-pd-line">
+                        <div class="pd-left"><b>Desconto</b></div>
+                        <div class="pd-right">- R$ 10,00</div>
+                    </div>
+                    <div class="container-pd-line">
+                        <div class="pd-left"><b>Frete</b></div>
+                        <div class="pd-right">R$ 10,00</div>
+                    </div>
+                    <div class="container-pd-line">
+                        <div class="pd-left"><b>Total</b></div>
+                        <div class="pd-right"><b>R$ 100,00</b></div>
+                    </div>
+                </div>
+                <!-- endereço de entrega -->
+                <div class="container-address">
+                    <div>
+                        <h2 class="titles">Endereço de Entrega</h2>
+                    </div>
+                    <div class="container-address-details">
+                        <div><b>CEP</b></div>
+                        <div>03733020</div>
+                    </div>
+                    <div class="container-address-details">
+                        <div><b>Endereço</b></div>
+                        <div>Rua Sena Madureira, 1500 - Bloco A2 apto 34 - Vila Clementino</div>
+                    </div>
+                    <div class="container-address-details city-state">
+                        <div class="city-details">
+                            <div><b>Cidade</b></div>
+                            <div>Ferraz de Vasconcelos</div>
+                        </div>
+                        <div class="state-details">
+                            <div><b>Estado</b></div>
+                            <div>SP</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
